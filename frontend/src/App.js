@@ -5,7 +5,7 @@ import Home from './Pages/home';
 function App() {
   return (
     <Router>
-       <Routes>
+        <Routes>
           <Route path="/" Component={Home} />      
         </Routes>
     </Router>

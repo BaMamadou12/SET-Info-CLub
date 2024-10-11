@@ -4,7 +4,9 @@ module.exports = {
     './src/**/*.{js,jsx,ts,tsx}', // Assurez-vous que les chemins sont corrects pour votre projet
   ],
   theme: {
-    extend: {},
+    fontFamily: {
+      'sans': ['Poppins'],
+    }
   },
   plugins: [],
 };
