@@ -60,7 +60,10 @@ class DocumentController extends Controller
     public function show($id)
     {
         $document = Document::with('createdBy')->findOrFail($id);
-        return response()->json($document);
+        return response()->json([
+            'message' => "Voici les informations sur le document: " . $document->title,
+            'document' => $document,
+        ]);
     }
 
     /**
