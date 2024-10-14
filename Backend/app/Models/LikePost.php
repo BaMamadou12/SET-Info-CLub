@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class LikePost extends Model
 {
     use HasFactory;
+    public function post()
+    {
+        return $this->belongsTo(Post::class, 'post_id');
+    }
+
+    // Relation  un like est fait par un utilisateur
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
