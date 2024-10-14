@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->year('year_edit');
             $table->unsignedBigInteger('category_id');
-            $table->string('edition');
+            $table->string('edition')->default('inconnue');
             $table->unsignedInteger('pages');
             $table->timestamps();
             $table->unsignedBigInteger('library_id');
