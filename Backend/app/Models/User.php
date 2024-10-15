@@ -58,6 +58,17 @@ class User extends Authenticatable
     }
 
 
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'created_by');
+    }
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class, 'created_by');
+    }
+}
+
     // Relation entre l'utilisateur et ses posts
     public function posts()
     {
@@ -94,3 +105,4 @@ class User extends Authenticatable
 
 
 }
+
