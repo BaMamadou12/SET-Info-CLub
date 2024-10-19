@@ -25,7 +25,7 @@ return new class extends Migration
             // Définir les clé étrangères vers les tables correspondants
             $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreign('tags_id')->references('id')->on('tags')->onDelete('cascade');
+            $table->foreign('tags_id')->references('tags_id')->on('tags')->onDelete('cascade');
         });
     }
 
