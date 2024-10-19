@@ -67,7 +67,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Document::class, 'created_by');
     }
-}
+
 
     // Relation entre l'utilisateur et ses posts
     public function posts()
