@@ -10,7 +10,7 @@ class Role extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name'
+        'name','guard_name'
     ];
 
     public function users():HasMany

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Controller;
+
 use Illuminate\Http\Request;
 
 class LikePostController extends Controller
