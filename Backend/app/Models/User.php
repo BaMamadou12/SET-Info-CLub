@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -57,6 +58,10 @@ class User extends Authenticatable
         ];
     }
 
+    public function otp(): HasOne
+    {
+        return $this->hasOne(Codeotp::class,'id',);
+    }
 
     public function events()
     {
@@ -67,7 +72,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Document::class, 'created_by');
     }
-}
+
 
     // Relation entre l'utilisateur et ses posts
     public function posts()
@@ -77,7 +82,7 @@ class User extends Authenticatable
     //relation entre le user et ses commentaires
     public function comments():HasMany{
         return $this->hasMany(Comment::class,'author_id');
-        
+
     }
      // Un utilisateur peut faire plusieurs likes
      public function likes(): HasMany
@@ -97,7 +102,7 @@ class User extends Authenticatable
     // {
     //     return $this->hasMany(Event::class);
     // }
-     
+
     // public function likeForums():HasMany
     // {
     //     return $this->hasMany(LikeForum::class);
