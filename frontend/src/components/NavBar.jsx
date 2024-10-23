@@ -1,20 +1,9 @@
-import {useState} from 'react'
+// import {useState} from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
 import logo from "../assets/logo.svg"
 
 function NavBar() {
-  // const [showMenu, setShowMenu] = useState(false)
-
-  // const style = {
-  //   display: "block",
-  //   position: "fixed",
-  //   right: 0,
-  //   width: "80%",
-  //   height: "100vh",
-  //   backgroundColor: "white",
-  //   zIndex: "800"
-  // }
   return (
     <div className="mb-6 text-[15px]">
         <div className='container mx-auto h-24 md:p-0 px-4 flex items-center justify-between'>

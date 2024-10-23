@@ -2,11 +2,8 @@ import React from 'react'
 import {Link} from "react-router-dom"
 import Tags from "./Tags"
 
-import img_1 from '../assets/images/blog_1.jpg'
 import img_2 from '../assets/images/blog_2.jpg'
-import img_3 from '../assets/images/blog_3.jpg'
-import img_4 from '../assets/images/blog_4.jpg'
-import img_5 from '../assets/images/blog_5.jpg'
+
 
 const tags = ["Frontend", "Backend", "PHP", "Langage C", "Javascript", "Laravel", 
     "JAVA", "Pointeur en C", "Développement Web", "Réseaux", "Système d’exploitation"]
@@ -24,7 +21,7 @@ function Sidebar() {
                 {/* items */}
                 <div className='flex gap-4 mb-4'>
                 <div className='w-20 h-[60px] relative bg-gray-100'>
-                    <img src={img_1} alt="" className='object-cover w-full h-full rounded-md'/>
+                    <img src={img_2} alt="" className='object-cover w-full h-full rounded-md'/>
                 </div>
                 <div className=''>
                     <div className='flex items-center gap-4 mb-1'>
@@ -64,7 +61,7 @@ function Sidebar() {
                 </div>
                 <div className='flex gap-4 mb-4'>
                 <div className='w-20 h-[60px] relative bg-gray-100'>
-                    <img src={img_3} alt="" className='object-cover w-full h-full rounded-md'/>
+                    <img src={img_2} alt="" className='object-cover w-full h-full rounded-md'/>
                 </div>
                 <div className=''>
                     <div className='flex items-center gap-4 mb-1'>
@@ -84,7 +81,7 @@ function Sidebar() {
                 </div>
                 <div className='flex gap-4 mb-4'>
                 <div className='w-20 h-[60px] relative bg-gray-100'>
-                    <img src={img_4} alt="" className='object-cover w-full h-full rounded-md'/>
+                    <img src={img_2} alt="" className='object-cover w-full h-full rounded-md'/>
                 </div>
                 <div className=''>
                     <div className='flex items-center gap-4 mb-1'>
@@ -104,7 +101,7 @@ function Sidebar() {
                 </div>
                 <div className='flex gap-4 mb-4'>
                 <div className='w-20 h-[60px] relative bg-gray-100'>
-                    <img src={img_5} alt="" className='object-cover w-full h-full rounded-md'/>
+                    <img src={img_2} alt="" className='object-cover w-full h-full rounded-md'/>
                 </div>
                 <div className=''>
                     <div className='flex items-center gap-4 mb-1'>

@@ -3,19 +3,14 @@ import {Link} from "react-router-dom"
 import user from "../assets/user.jpg"
 
 import img_1 from '../assets/images/blog_1.jpg'
-import img_2 from '../assets/images/blog_2.jpg'
-import img_3 from '../assets/images/blog_3.jpg'
-import img_4 from '../assets/images/blog_4.jpg'
-import img_5 from '../assets/images/blog_5.jpg'
 
-const images = ["",img_1,img_2,img_3,img_4,img_5]
 
 function BlogItem({blog}) {
   return (
     <div className='relative md:flex w-full rounded-[20px] border border-gray-200 p-4 mb-4'>
       <div className='relative h-56 md:h-60 mb-4 md:mb-0 md:mr-4'>
         <Link to="/blogs">
-          <img src={images[blog.id]} alt="" className='w-full md:w-80 h-full rounded-md object-cover' />
+          <img src={img_1} alt="" className='w-full md:w-80 h-full rounded-md object-cover' />
         </Link>
       </div>
       <div className='py-3 my-auto w-full md:w-10/12'>
