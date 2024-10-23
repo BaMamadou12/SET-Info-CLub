@@ -3,14 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Register a new user.
+     *
+     * @param  \Illuminate\Http\Request  
+     * 
+     * @return \Illuminate\Http\JsonResponse  
      */
     public function register(Request $request)
     {
@@ -31,6 +37,8 @@ class AuthController extends Controller
                 'data' => $validated->errors()
             ],403);
         }
+        $role= Role::where('name', 'user')->first();
+        $roleId = $role->id;
         $user = User::create([
             'nom'=> $request->nom ,
             'prenom' => $request->prenom ,
@@ -38,46 +46,63 @@ class AuthController extends Controller
             'filliere' => $request->filliere,
             'niveau' => $request->niveau,
             'email' =>$request->email,
-            'password' => $request->password,
-
+            'password' => bcrypt($request->password),
+            'role_id' => $roleId,
         ]);
-        return response()->json([
-           'status' => "success",
-            'message' => 'Utilisateur créé avec succès',
-            'data' => $user
-        ],201);
-
+        $data['token'] = $user->createToken($request->email)->plainTextToken;
+        $data['user'] = $user;
+        $response = [
+            'status' => 'success',
+            'message' => 'utilisateur crée avec success',
+            'data' => $data
+        ];
+        return response()->json($response, 201);
     }
-
     /**
-     * Store a newly created resource in storage.
+     * Handle user login and generate an authentication token.
+    
+     * @param  \Illuminate\Http\Request  
+     * 
+     * @return \Illuminate\Http\JsonResponse  
      */
-    public function store(Request $request)
-    {
-        //
+    public function login(Request $request){
+        $request->validate([
+            'email' =>'required|string|email:rfc,dns',
+            'password' => 'required|string',
+        ]);
+       
+        if(Auth::attempt($request->only('email','password'))){
+            $user = Auth::user();
+            $data['token'] = $user->createToken($request->email)->plainTextToken;
+            $data['user'] = $user;
+            $response = [
+               'status' =>'success',
+               'message' => 'Authentification réussie',
+                'data' => $data
+            ];
+            return response()->json($response, 200);
+
+        }
+        $response = [
+            'status' => 'failed',
+           'message' => 'Authentification échouée',
+        ];
+        return response()->json($response, 401);
+
+    }  
+    /**
+     * Log out the authenticated user and revoke the current access token.
+     * @param  \Illuminate\Http\Request  
+     * 
+     * @return \Illuminate\Http\JsonResponse 
+     */
+    public function logout(Request $request){
+        $request->user()->currentAccessToken()->delete();
+        $response = [
+           'status' =>'success',
+           'message' => 'Déconnexion réussie',
+        ];
+        return response()->json($response, 200);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

@@ -67,28 +67,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Document::class, 'created_by');
     }
-}
+    
 
-    // Relation entre l'utilisateur et ses posts
-    public function posts()
-    {
-        return $this->hasMany(Post::class, 'author_id');
-    }
-    //relation entre le user et ses commentaires
-    public function comments():HasMany{
-        return $this->hasMany(Comment::class,'author_id');
-        
-    }
-     // Un utilisateur peut faire plusieurs likes
-     public function likes(): HasMany
-     {
-         return $this->hasMany(LikePost::class, 'user_id');
-     }
 
-    public function role():BelongsTo
-    {
-        return $this->belongsTo(Role::class);
-    }
+  
     // public function posts():HasMany{
     //     return $this->hasMany(Post::class);
     // }
