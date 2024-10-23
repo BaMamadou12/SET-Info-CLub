@@ -1,0 +1,13 @@
+.swiper-pagination-bullet {
+    @apply size-2 bg-white opacity-50
+}
+
+.swiper-pagination-bullet-active {
+    @apply w-12 h-2 rounded-md bg-blue-300 opacity-100
+}
+
+.active {
+    @apply font-semibold text-gray-700 after:content-['']  
+    after:absolute after:w-full after:h-1 after:rounded-full after:bg-gray-700
+    after:bottom-0 after:left-0 transition-all
+}

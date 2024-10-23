@@ -5,30 +5,30 @@ import google from "../../assets/Google.svg";
 import github from "../../assets/Github.svg";
 import InputField from "../../components/inputs/InputField";
 import Checkbox from "../../components/inputs/Checkbox";
+import { Link } from "react-router-dom";
 function Login() {
   return (
-    <>
-      <div className="mb-4 container mx-auto w-full text-sm font-semibold py-4">
-          <a href="/" className="inline-flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100">
+    <div className="container mx-auto w-full lg:px-0 px-6">
+      <div className="mb-4 text-sm font-semibold flex items-center justify-between p-2">
+          <Link to="/" className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={24} height={24} color={"#6b7280"} fill={"none"}>
               <path d="M3.99982 11.9998L19.9998 11.9998" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               <path d="M8.99963 17C8.99963 17 3.99968 13.3176 3.99966 12C3.99965 10.6824 8.99966 7 8.99966 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             Page d'accueil
-          </a>
+          </Link>
       </div>
-      <div className="container mx-auto min-h-screen flex flex-col items-center justify-center px-4 py-6 text-gray-500">
-        <div className="w-full max-w-6xl p-6 flex min-h-96 justify-between gap-6">
+      <div className="max-w-7xl mx-auto lg:flex-row flex flex-col-reverse my-10 min-h-96 justify-between gap-6">
           {/* content */}
-          <div className="w-1/2 flex flex-col">
+          <div className="lg:w-1/2 flex flex-col">
             {/* LOGO */}
-            <div className="mb-11">
+            <div className="mb-4  lg:mb-11">
               <img src={logo} alt=""/>
             </div>
 
             {/* FORM */}
             <div>
-              <h1 className="text-3xl text-gray-700 font-semibold mb-2">
+              <h1 className="text-3xl text-gray-700 font-semibold mb-2 mx-auto lg:mx-0">
                 Se connecter
               </h1>
               <p className="mb-8">Connectez-vous pour accéder à votre compte </p>
@@ -50,8 +50,8 @@ function Login() {
               </form>
               <div className="text-center mb-8">
                 <p className="text-sm font-medium" >
-                  Vous n'avez pas de compte ?{" "}
-                  <a href="/login" className="text-sm text-[#FF8682] hover:underline">
+                  Vous n'avez pas de compte ?
+                  <a href="/login" className="text-sm text-[#FF8682] hover:underline ml-1">
                     Inscrivez-vous
                   </a>
                 </p>
@@ -74,12 +74,11 @@ function Login() {
           </div>
 
           {/* illustration */}
-          <div className="w-[45%] bg-[#9DCCFF] rounded-3xl min-h-[620px] flex items-center justify-center p-4" >
-            <img src={login} alt="" />
+          <div className="lg:w-[45%] w-full bg-[#9DCCFF] mb-3 lg:mb-0 rounded-3xl h-96 lg:h-[620px] overflow-hidden flex items-center justify-center p-4" >
+            <img src={login} alt="" className="" />
           </div>
         </div>
-      </div>
-    </>
+    </div>
   );
 }
 
