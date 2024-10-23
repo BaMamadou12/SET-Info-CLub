@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
@@ -11,7 +13,13 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $permissions = Permission::all();
+            return response()->json(['permissions' => $permissions], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Problème inconnu'], 500);
+        }
+
     }
 
     /**
@@ -19,7 +27,13 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate(
+            [
+                'name'=>'required|string|unique:permissions,name|max:255'
+            ]
+            );
+        $permission=Permission::create(['name'=>$validated['name']]);
+        return response()->json(['message'=>'Permission ajouté avec succès','permission'=>$permission],201);    
     }
 
     /**
@@ -27,7 +41,9 @@ class PermissionController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $permission=Permission::findOrFail($id);
+
+        return response()->json(['message'=>'La permission est trouvée','permission'=>$permission],200);
     }
 
     /**
@@ -35,7 +51,13 @@ class PermissionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated=$request->validate([
+        'name'=>'required|string|unique:permissions,name|max:255'
+        ]);
+        $permission=Permission::findOrFail($id);
+        $permission->update(['name'=>$validated['name']]);
+        return response()->json(['message'=>'La permission est mise à jour','permission'=>$permission],200);
+        
     }
 
     /**
@@ -43,6 +65,33 @@ class PermissionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $permission=Permission::findOrFail($id);
+        $permission->roles()->detach();
+        $permission->delete();
+        return response()->json(['message'=>'La permission a été supprimée avec succès !'],200);
     }
+   public function  assignPermissionToRole(Request $request, $id){
+      
+    $validated = $request->validate([
+        'name' => 'required|string|exists:permissions,name',
+    ]);
+
+    
+    $role = Role::findOrFail($id);
+
+    // Récupérer la permission par son nom
+    $permission = Permission::where('name', $validated['name'])->first();
+
+    // affecter une permission sur un role
+    $role->givePermissionTo($permission);
+
+    return response()->json([
+        'message' => 'Permission assignée avec succès au rôle',
+        'role' => $role->name,
+        'permission' => $permission->name
+    ], 200);
+
+
+    }
+   
 }

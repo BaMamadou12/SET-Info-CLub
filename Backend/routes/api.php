@@ -18,12 +18,17 @@ Route::post('/roles',[RoleController::class,'store']);
 Route::get('/roles/{id}',[RoleController::class,'show']);
 Route::put('/roles/{id}',[RoleController::class,'update']);
 Route::delete('/roles/{id}',[RoleController::class,'destroy']);
+Route::post('/roles/assigned_role/{user_id}',[RoleController::class,'assignRoleToUser']);
 
 // Route pour les apis de permissions
 Route::get('/permissions', [PermissionController::class, 'index']);
 Route::post('/permissions', [PermissionController::class, 'store']);
-Route::post('/permissions/assign-to-role/{roleId}', [PermissionController::class, 'assignPermissionToRole']);
+Route::get('/permissions/{id}', [PermissionController::class, 'show']);
+Route::delete('/permissions/{id}',[PermissionController::class,'destroy']);
+Route::put('/permissions/{id}',[PermissionController::class,'update']);
+Route::post('/permissions/assign-to-role/{id}', [PermissionController::class, 'assignPermissionToRole']);
 Route::post('/permissions/assign-to-user/{userId}', [PermissionController::class, 'assignPermissionToUser']);
+
 
 
 

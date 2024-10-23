@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Role;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 
@@ -89,5 +89,26 @@ class RoleController extends Controller
         $role=Role::findOrFail($id);
         $role->delete();
         return response()->json(['message'=>'Le role a été supprimé avec succès !'],200);
+    }
+
+
+    /**
+     * methode qui permet d'assigner un role à un user 
+     */
+    public function assignRoleToUser(Request $request , $user_id){
+
+        $user = User::findOrFail($user_id);
+
+        // Valider que le rôle existe dans la table roles 
+        $validated = $request->validate([
+            'name' => 'required|string|exists:roles,name'
+        ]);
+    
+        // Assigner le rôle à l'utilisateur
+        $user->assignRole($validated['name']);
+
+        return response()->json(['message'=>'Le role est assigné avec succès !'],200);
+
+
     }
 }
