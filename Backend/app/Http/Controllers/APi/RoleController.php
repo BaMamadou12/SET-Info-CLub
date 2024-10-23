@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RoleController extends Controller
 {
@@ -30,6 +31,26 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         //
+        $validated = Validator::make($request->all(),[
+            'name' => 'required|string|max:255',
+        ]);
+        if($validated->fails()){
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'erreur de validation',
+                'data' => $validated->errors(),
+            ]);
+
+        
+        }
+        $role = Role::create([
+            'name'=> $request->name,
+         ]);
+         return response()->json([
+            'status' =>'success',
+            'message' => 'rôle créé avec succès',
+            'data' => $role,
+         ]);
     }
 
     /**
