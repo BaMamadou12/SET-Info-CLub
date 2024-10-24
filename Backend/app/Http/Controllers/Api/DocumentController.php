@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\StoreDocumentRequest;
 use App\Models\Document;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\Api\StoreDocumentRequest;
+use Illuminate\Support\Str;
 
 class DocumentController extends Controller
 {

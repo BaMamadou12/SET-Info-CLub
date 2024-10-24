@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\StoreEventRequest;
 use App\Models\Event;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\Api\StoreEventRequest;
 
 class EventController extends Controller
 {
