@@ -1,11 +1,14 @@
 <?php
 
+
 use App\Http\Controllers\Api\DocumentController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\PermissionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CodeotpController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -42,3 +45,18 @@ Route::post('/permissions/assign-to-user/{userId}', [PermissionController::class
 
 Route::apiResource('documents', DocumentController::class);
 Route::apiResource('events', EventController::class);
+
+
+// -> Reset password
+
+// -> Send email with code
+
+Route::get('/sendotp/{email}',[CodeotpController::class,'sendotp'] )->name('sendotp');
+
+// ->  Verifie email
+
+Route::get('/verifieOtp/{email}',[CodeotpController::class,'verifieotp'] )->name('verifieotp');
+
+// ->reset
+
+Route::post('resetpassword',[UserController::class,'resetpassword'] )->name('resetpassword');
