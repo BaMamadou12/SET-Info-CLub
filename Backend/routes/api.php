@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\DocumentController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -31,16 +32,6 @@ Route::delete('/permissions/{id}',[PermissionController::class,'destroy']);
 Route::put('/permissions/{id}',[PermissionController::class,'update']);
 Route::post('/permissions/assign-to-role/{id}', [PermissionController::class, 'assignPermissionToRole']);
 Route::post('/permissions/assign-to-user/{userId}', [PermissionController::class, 'assignPermissionToUser']);
-
-
-
-
-
-
-
-
-
-
 
 
 Route::apiResource('documents', DocumentController::class);
