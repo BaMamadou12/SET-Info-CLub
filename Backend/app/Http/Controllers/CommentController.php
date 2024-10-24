@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Controller;
+
 
 class CommentController extends Controller
 {
